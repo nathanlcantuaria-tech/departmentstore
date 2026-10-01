@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Início | Loja Conecta{% endblock %}
+
+{% block content %}
+<section class="welcome-banner rounded-4 p-4 p-md-5 mb-5" aria-labelledby="welcome-title">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="badge rounded-pill text-bg-light mb-3">Sua loja de departamentos</span>
+            <h1 id="welcome-title" class="display-5 fw-bold mb-3">Tudo para o seu dia a dia, em um só lugar.</h1>
+            <p class="lead mb-4">Bem-vindo à Loja Conecta! Explore nosso catálogo e descubra produtos de moda, tecnologia, casa e muito mais.</p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="{% url 'listar_produtos' %}" class="btn btn-light btn-lg fw-semibold">Explorar produtos <span aria-hidden="true">&rarr;</span></a>
+                <a href="#departamentos" class="btn btn-outline-light btn-lg">Conhecer departamentos</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="welcome-card rounded-4 p-4">
+                <div class="fs-1 mb-2" aria-hidden="true">&#128717;</div>
+                <h2 class="h4 fw-bold">Encontre o que combina com você</h2>
+                <p class="mb-0">Consulte os produtos cadastrados e veja os detalhes de cada item antes de escolher.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if user.is_authenticated %}
+<section class="alert alert-light border rounded-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-5" aria-label="Área de gerenciamento">
+    <div>
+        <h2 class="h5 mb-1">Olá, {{ user.get_short_name|default:user.username }}!</h2>
+        <p class="mb-0 text-body-secondary">Você está conectado e pode gerenciar os produtos da loja.</p>
+    </div>
+    <a href="{% url 'criar_produto' %}" class="btn btn-primary">Cadastrar produto</a>
+</section>
+{% endif %}
+
+<section id="departamentos" class="mb-5" aria-labelledby="departments-title">
+    <div class="mb-4">
+        <p class="section-label mb-2">DESCUBRA A LOJA</p>
+        <h2 id="departments-title" class="fw-bold">Nossos departamentos</h2>
+        <p class="text-body-secondary mb-0">Conheça as categorias que fazem parte da nossa loja.</p>
+    </div>
+    <div class="row g-3">
+        <div class="col-sm-6 col-lg-3">
+            <article class="card department-card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="department-icon mb-3" aria-hidden="true">&#128085;</div>
+                    <h3 class="h5 fw-bold">Moda e acessórios</h3>
+                    <p class="text-body-secondary mb-0">Roupas e acessórios para diferentes estilos e ocasiões.</p>
+                </div>
+            </article>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <article class="card department-card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="department-icon mb-3" aria-hidden="true">&#128187;</div>
+                    <h3 class="h5 fw-bold">Eletrônicos</h3>
+                    <p class="text-body-secondary mb-0">Tecnologia para estudar, trabalhar e aproveitar seu tempo livre.</p>
+                </div>
+            </article>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <article class="card department-card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="department-icon mb-3" aria-hidden="true">&#127968;</div>
+                    <h3 class="h5 fw-bold">Casa e decoração</h3>
+                    <p class="text-body-secondary mb-0">Utilidades e detalhes para deixar seus ambientes mais acolhedores.</p>
+                </div>
+            </article>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <article class="card department-card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="department-icon mb-3" aria-hidden="true">&#9917;</div>
+                    <h3 class="h5 fw-bold">Esporte e lazer</h3>
+                    <p class="text-body-secondary mb-0">Produtos para se movimentar e aproveitar seus momentos de descanso.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-callout rounded-4 p-4 p-md-5 mb-4" aria-labelledby="catalog-title">
+    <div class="row align-items-center g-3">
+        <div class="col-md-8">
+            <h2 id="catalog-title" class="h3 fw-bold">Sua próxima descoberta está no catálogo.</h2>
+            <p class="text-body-secondary mb-0">Veja a lista de produtos e abra cada item para consultar suas informações.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{% url 'listar_produtos' %}" class="btn btn-primary btn-lg">Ver catálogo</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
